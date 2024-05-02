@@ -1,0 +1,61 @@
+# This file exists so you can easily regenerate your project.
+#
+# `cookiepatcher` is a convenient shim around `cookiecutter`
+# for regenerating projects (it will generate a .cookiecutterrc
+# automatically for any template). To use it:
+#
+#    pip install cookiepatcher
+#    cookiepatcher gh:ionelmc/cookiecutter-pylibrary python-lekidtools
+#
+# See:
+#    https://pypi.org/project/cookiepatcher
+#
+# Alternatively, you can run:
+#
+#    cookiecutter --overwrite-if-exists --config-file=python-lekidtools/.cookiecutterrc gh:ionelmc/cookiecutter-pylibrary
+
+default_context:
+    allow_tests_inside_package: "yes"
+    c_extension_function: "longest"
+    c_extension_module: "_lekidtools"
+    c_extension_optional: "no"
+    c_extension_support: "no"
+    codacy: "no"
+    codacy_projectid: "[Get ID from https://app.codacy.com/gh/Alan-Manning/python-lekidtools/settings]"
+    codeclimate: "no"
+    codecov: "yes"
+    command_line_interface: "no"
+    command_line_interface_bin_name: "lekidtools"
+    coveralls: "no"
+    distribution_name: "lekidtools"
+    email: "Alan_Manning@Live.co.uk"
+    formatter_quote_style: "double"
+    full_name: "Alan Manning"
+    github_actions: "yes"
+    github_actions_osx: "yes"
+    github_actions_windows: "yes"
+    license: "GNU Lesser General Public License v3 or later (LGPLv3+)"
+    package_name: "lekidtools"
+    pre_commit: "yes"
+    project_name: "lekidtools"
+    project_short_description: "simple tools for python work with LEKIDs"
+    pypi_badge: "yes"
+    pypi_disable_upload: "no"
+    release_date: "today"
+    repo_hosting: "github.com"
+    repo_hosting_domain: "github.com"
+    repo_main_branch: "main"
+    repo_name: "python-lekidtools"
+    repo_username: "Alan-Manning"
+    scrutinizer: "no"
+    setup_py_uses_setuptools_scm: "no"
+    sphinx_docs: "yes"
+    sphinx_docs_hosting: "https://python-lekidtools.readthedocs.io/"
+    sphinx_doctest: "no"
+    sphinx_theme: "sphinx-rtd-theme"
+    test_matrix_separate_coverage: "no"
+    version: "0.0.0"
+    version_manager: "bump2version"
+    website: "https://github.com/Alan-Manning"
+    year_from: "2024"
+    year_to: "2024"
