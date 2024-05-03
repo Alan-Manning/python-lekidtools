@@ -7,6 +7,108 @@ from scipy.special import iv as I0
 from scipy.special import kv as K0
 
 
+class Scattering_matrix():
+    def __init__(self, A, B, C, D, Z0):
+        """docstring short line."""
+        self.matrix = np.array([[A, B], [C, D]])
+
+        self.Z0 = Z0
+
+        self.A = A
+        self.B = B
+        self.C = C
+        self.D = D
+
+    def __pow__(self, other):
+        if not isinstance(other, Scattering_matrix):
+            return self
+        result = np.matmul(self.matrix, other.matrix)
+        new_A = result[0,0]
+        new_B = result[0,1]
+        new_C = result[1,0]
+        new_D = result[1,1]
+
+        return Scattering_matrix(new_A, new_B, new_C, new_D, self.Z0)
+
+    # Sxx
+    def _get_Sxx_denominator(self):
+        denominator = self.A + (self.B / self.Z0) + (self.C * self.Z0) + self.D
+        return denominator
+
+    def get_S11(self):
+        numerator = self.A + (self.B / self.Z0) - (self.C * self.Z0) - self.D
+        denominator = self._get_Sxx_denominator()
+        return (numerator / denominator)
+
+    def get_S12(self):
+        numerator = 2 * ((self.A * self.D) - (self.B * self.C))
+        denominator = self._get_Sxx_denominator()
+        return (numerator / denominator)
+
+    def get_S21(self):
+        numerator = 2
+        denominator = self._get_Sxx_denominator()
+        return (numerator / denominator)
+
+    def get_S22(self):
+        numerator = -self.A + (self.B/self.Z0) - (self.C * self.Z0) + self.D
+        denominator = self._get_Sxx_denominator()
+        return (numerator / denominator)
+
+    # Zxx
+    def _get_Zxx_denominator(self):
+        denominator = self.C
+        return denominator
+
+    def get_Z11(self):
+        numerator = self.A
+        denominator = self._get_Zxx_denominator()
+        return (numerator / denominator)
+
+    def get_Z12(self):
+        numerator = (self.A * self.D) - (self.B * self.C)
+        denominator = self._get_Zxx_denominator()
+        return (numerator / denominator)
+
+    def get_Z21(self):
+        numerator = 1
+        denominator = self._get_Zxx_denominator()
+        return (numerator / denominator)
+
+    def get_Z22(self):
+        numerator = self.D
+        denominator = self._get_Zxx_denominator()
+        return (numerator / denominator)
+
+    # Yxx
+    def _get_Yxx_denominator(self):
+        denominator = self.B
+        return denominator
+
+    def get_Y11(self):
+        numerator = self.D
+        denominator = self._get_Yxx_denominator()
+        return (numerator / denominator)
+
+    def get_Y12(self):
+        numerator = (self.B * self.C) - (self.A * self.D)
+        denominator = self._get_Yxx_denominator()
+        return (numerator / denominator)
+
+    def get_Y21(self):
+        numerator = -1
+        denominator = self._get_Yxx_denominator()
+        return (numerator / denominator)
+
+    def get_Y22(self):
+        numerator = self.A
+        denominator = self._get_Yxx_denominator()
+        return (numerator / denominator)
+
+
+def get_ABCD_parameters_for_2_port_network():
+
+
 def get_sig1_over_sign(
     frequency: float,
     actual_temp: float,
